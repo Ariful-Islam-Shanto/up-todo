@@ -1,9 +1,12 @@
 import React from 'react';
+import Navbar from '../../Components/Navbar/Navbar';
+import CTA from '../../Components/CTA/CTA';
 
 const Home = () => {
     return (
         <div>
-            <h1 className='text-white text-9xl'>This is home page</h1>
+            <Navbar/>
+            <CTA/>
         </div>
     );
 };
