@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <div className="h-[20vh]">
       <Container>
-        <div className="navbar bg-base-100 ">
+        <div className="navbar ">
           <div className="flex-1">
             <div className="flex items-center gap-4">
               <img 

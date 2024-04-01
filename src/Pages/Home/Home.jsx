@@ -4,7 +4,7 @@ import CTA from '../../Components/CTA/CTA';
 
 const Home = () => {
     return (
-        <div>
+        <div className='bg-gray-900'>
             <Navbar/>
             <CTA/>
         </div>
