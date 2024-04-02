@@ -1,17 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { RxCross1 } from "react-icons/rx";
 import { MdSpaceDashboard } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import EmptyState from "../Components/Todo/EmptyState/EmptyState";
+import Modal from "../Components/Modal/Modal";
+import AddTodo from "../Components/Todo/AddTodo/AddTodo";
+import { useDispatch } from "react-redux";
+import { addToDo } from "../Components/Redux/Slice/TodoSlice";
 
 const Dashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const todo = false;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+      const storedTasks = JSON.parse(localStorage.getItem('tasks'));
+      if (storedTasks) {
+        dispatch(addToDo(storedTasks));
+      }
+  }, [dispatch])
+
 
   return (
     <div className="flex items-center justify-center">
+{/* AddTodo modal */}
+{isOpen && <Modal setIsOpen={setIsOpen}><AddTodo setIsOpen={setIsOpen}/></Modal>}
       {/* Dashboard menu */}
       <div
         className={` w-[200px] transition-all duration-300 ease-in-out fixed lg:relative z-[9999] top-0 ${
@@ -82,9 +99,9 @@ const Dashboard = () => {
 
         {todo === true ? 
             <h1 className="text-3xl text-white font-medium ">You have 0 task today</h1> : 
-            <EmptyState/>
+            <EmptyState setIsOpen={setIsOpen}/>
             }
-
+      
             
       </div>
     </div>
